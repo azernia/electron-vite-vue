@@ -27,7 +27,7 @@ class AppBuilder {
     // 为生产环境准备 package.json
     preparePackageJson() {
         const pkgJsonPath = path.join(process.cwd(), 'package.json');
-        const localPkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf-8'));
+        const localPkgJson: PackageJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf-8'));
         const electronConfig = localPkgJson.devDependencies.electron.replace('^', '');
         localPkgJson.main = 'mainEntry.js';
         delete localPkgJson.scripts;
