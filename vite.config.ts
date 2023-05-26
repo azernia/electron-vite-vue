@@ -1,12 +1,14 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 import { devPlugin, getReplacer } from './plugins/devPlugin';
-import optimizer from "vite-plugin-optimizer";
+import { buildPlugin } from './plugins/buildPlugin';
+import optimizer from 'vite-plugin-optimizer';
 
 export default defineConfig({
-  plugins: [
-      vue(),
-      devPlugin(),
-      optimizer(getReplacer())
-  ],
-})
+    plugins: [
+        vue(),
+        devPlugin(),
+        buildPlugin(),
+        optimizer(getReplacer())
+    ]
+});
