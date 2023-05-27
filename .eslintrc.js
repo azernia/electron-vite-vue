@@ -9,8 +9,7 @@ module.exports = {
         'plugin:vue/vue3-essential',
         'plugin:@typescript-eslint/recommended'
     ],
-    'overrides': [
-    ],
+    'overrides': [],
     'parser': 'vue-eslint-parser',
     'parserOptions': {
         'ecmaVersion': 'latest',
@@ -22,6 +21,7 @@ module.exports = {
         '@typescript-eslint'
     ],
     'rules': {
+        '@typescript-eslint/ban-ts-comment': 'off', // 关闭ts注释检查
         '@typescript-eslint/ban-types': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/member-delimiter-style': ['error',
