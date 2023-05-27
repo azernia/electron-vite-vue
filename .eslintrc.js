@@ -35,6 +35,7 @@ module.exports = {
             }],
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-var-requires': 'off',
+        'vue/valid-v-for': 'off',
         'accessor-pairs': 2,
         'arrow-spacing': [2, {
             'before': true,
