@@ -24,9 +24,9 @@ import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 const mainWindowRoutes = ref([
-    { path: `/WindowMain/Chat`, isSelected: true, icon: `icon-chat`, iconSelected: `icon-chat` },
-    { path: `/WindowMain/Contact`, isSelected: false, icon: `icon-tongxunlu1`, iconSelected: `icon-tongxunlu` },
-    { path: `/WindowMain/Collection`, isSelected: false, icon: `icon-shoucang1`, iconSelected: `icon-shoucang` }
+    { path: `/main/chat`, isSelected: true, icon: `icon-chat`, iconSelected: `icon-chat` },
+    { path: `/main/contact`, isSelected: false, icon: `icon-tongxunlu1`, iconSelected: `icon-tongxunlu` },
+    { path: `/main/collection`, isSelected: false, icon: `icon-shoucang1`, iconSelected: `icon-shoucang` }
 ]);
 
 const route = useRoute();

@@ -10,5 +10,8 @@ export default defineConfig({
         devPlugin(),
         buildPlugin(),
         optimizer(getReplacer())
-    ]
+    ],
+    build: {
+        assetsInlineLimit: 0 // 为了方便调试，不对图片等资源进行 base64 编码
+    }
 });
