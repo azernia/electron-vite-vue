@@ -1,18 +1,14 @@
 <template>
-    <div class="chat-search">
-        <div class="search-icon"><i class="icon icon-sousuo"></i></div>
-        <div class="input-box" contenteditable="true" placeholder="搜索"></div>
-        <div class="search-btn">+</div>
+
+    <div class="chatSearch">
+        <div class="searchIcon"><i class="icon icon-sousuo"></i></div>
+        <div class="inputBox" contenteditable="true" placeholder="搜索"></div>
+        <div class="searchBtn">+</div>
     </div>
 </template>
-
-<script lang="ts" setup>
-
-</script>
-
+<script lang="ts" setup></script>
 <style lang="scss" scoped>
-
-.chat-search {
+.chatSearch {
   display: flex;
   background: rgb(247, 247, 247);
   height: 54px;
@@ -25,7 +21,7 @@
   border-right: 1px solid rgb(214, 214, 214);
 }
 
-.search-icon {
+.searchIcon {
   position: absolute;
   left: 13px;
   top: 24px;
@@ -38,7 +34,7 @@
   }
 }
 
-.input-box {
+.inputBox {
   -webkit-app-region: no-drag;
   flex: 1;
   margin-right: 8px;
@@ -71,7 +67,7 @@
   }
 }
 
-.search-btn {
+.searchBtn {
   -webkit-app-region: no-drag;
   width: 24px;
   height: 23px;

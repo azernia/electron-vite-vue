@@ -1,7 +1,46 @@
+<script setup lang="ts">
+import { onMounted, ref, onUnmounted } from 'vue';
+import { ipcRenderer } from 'electron';
+
+defineProps<{ title?: string }>();
+const isMaximized = ref(false);
+// 关闭窗口
+const closeWindow = () => {
+    ipcRenderer.invoke('closeWindow');
+};
+// 最大化窗口
+const maxmizeMainWin = () => {
+    ipcRenderer.invoke('maxmizeWindow');
+};
+// 最小化窗口
+const minimizeMainWindow = () => {
+    ipcRenderer.invoke('minimizeWindow');
+};
+// 还原窗口
+const unmaximizeMainWindow = () => {
+    ipcRenderer.invoke('unmaximizeWindow');
+};
+// 窗口最大化事件
+const winMaximizeEvent = () => {
+    isMaximized.value = true;
+};
+// 窗口取消最大化事件
+const winUnmaximizeEvent = () => {
+    isMaximized.value = false;
+};
+onMounted(() => {
+    ipcRenderer.on('windowMaximized', winMaximizeEvent);
+    ipcRenderer.on('windowUnmaximized', winUnmaximizeEvent);
+});
+onUnmounted(() => {
+    ipcRenderer.off('windowMaximized', winMaximizeEvent);
+    ipcRenderer.off('windowUnmaximized', winUnmaximizeEvent);
+});
+</script>
 <template>
-    <div class="top-bar">
-        <div class="win-title">{{ title }}</div>
-        <div class="win-tool">
+    <div class="topBar">
+        <div class="winTitle">{{ title }}</div>
+        <div class="winTool">
             <div @click="minimizeMainWindow">
                 <i class="icon icon-minimize"/>
             </div>
@@ -17,64 +56,29 @@
         </div>
     </div>
 </template>
-
-<script lang="ts" setup>
-import { onMounted, ref, onUnmounted } from 'vue';
-import { ipcRenderer } from 'electron';
-
-defineProps<{ title?: string }>();
-const isMaximized = ref(false);
-const closeWindow = () => {
-    ipcRenderer.invoke('closeWindow');
-};
-const maxmizeMainWin = () => {
-    ipcRenderer.invoke('maxmizeWindow');
-};
-const minimizeMainWindow = () => {
-    ipcRenderer.invoke('minimizeWindow');
-};
-const unmaximizeMainWindow = () => {
-    ipcRenderer.invoke('unmaximizeWindow');
-};
-const winMaximizeEvent = () => {
-    isMaximized.value = true;
-};
-const winUnMaximizeEvent = () => {
-    isMaximized.value = false;
-};
-onMounted(() => {
-    ipcRenderer.on('windowMaximized', winMaximizeEvent);
-    ipcRenderer.on('windowUnMaximized', winUnMaximizeEvent);
-});
-onUnmounted(() => {
-    ipcRenderer.off('windowMaximized', winMaximizeEvent);
-    ipcRenderer.off('windowUnMaximized', winUnMaximizeEvent);
-});
-</script>
-
 <style lang="scss" scoped>
-.top-bar {
+.topBar {
   display: flex;
   height: 25px;
   line-height: 25px;
-  -webkit-app-region: drag;
+  -webkit-app-region: drag; /* 可拖拽区域 */
   width: 100%;
 }
 
-.win-title {
+.winTitle {
   flex: 1;
   padding-left: 12px;
   font-size: 14px;
   color: #888;
 }
 
-.win-tool {
+.winTool {
   height: 100%;
   display: flex;
-  -webkit-app-region: no-drag;
+  -webkit-app-region: no-drag; /* 可拖拽区域内的不可拖拽区域 */
 }
 
-.win-tool div {
+.winTool div {
   height: 100%;
   width: 34px;
   text-align: center;
@@ -83,21 +87,21 @@ onUnmounted(() => {
   line-height: 25px;
 }
 
-.win-tool .icon {
+.winTool .icon {
   font-size: 10px;
   color: #666666;
   font-weight: bold;
 }
 
-.win-tool div:hover {
+.winTool div:hover {
   background: #efefef;
 }
 
-.win-tool div:last-child:hover {
+.winTool div:last-child:hover {
   background: #ff7875;
 }
 
-.win-tool div:last-child:hover i {
+.winTool div:last-child:hover i {
   color: #fff !important;
 }
 </style>

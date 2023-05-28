@@ -1,16 +1,18 @@
+<script setup lang="ts">
+import { onMounted } from 'vue';
+import ChatSearch from './ChatSearch.vue';
+
+onMounted(() => {
+});
+</script>
 <template>
-    <div class="chat-list">
+    <div class="ChatList">
         <ChatSearch/>
-        <div class="list-box"></div>
+        <div class="ListBox"></div>
     </div>
 </template>
-
-<script lang="ts" setup>
-import ChatSearch from './ChatSearch.vue';
-</script>
-
-<style lang="scss" scoped>
-.chat-list {
+<style scoped lang="scss">
+.ChatList {
   width: 250px;
   display: flex;
   flex-direction: column;
@@ -18,7 +20,7 @@ import ChatSearch from './ChatSearch.vue';
   box-sizing: border-box;
 }
 
-.list-box {
+.ListBox {
   background: rgb(230, 229, 229);
   background-image: linear-gradient(to bottom right, rgb(235, 234, 233), rgb(240, 240, 240));
   flex: 1;

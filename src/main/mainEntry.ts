@@ -1,11 +1,17 @@
 // 创建主进程入口程序
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, BrowserWindowConstructorOptions, WebPreferences } from 'electron';
 import { CustomScheme } from './CustomScheme';
+import { CommonWindowEvent } from './CommonWindowEvent.ts';
+
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true'; // 关闭安全警告
 let mainWindow: BrowserWindow;
 
 app.whenReady().then(() => {
-    const config = {
+    interface Config extends BrowserWindowConstructorOptions {
+        webPreferences: WebPreferences
+    }
+
+    const config: Config = {
         webPreferences: {
             nodeIntegration: true, // 是否集成 Nodejs
             webSecurity: false, // 是否开启 Web 安全防范
@@ -25,4 +31,10 @@ app.whenReady().then(() => {
         CustomScheme.registerScheme();
         mainWindow.loadURL('app://index.html');
     }
+    CommonWindowEvent.listen();
+});
+
+app.on('browser-window-created', (e, win) => {
+    console.log(e);
+    CommonWindowEvent.regWinEvent(win);
 });
