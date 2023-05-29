@@ -2,6 +2,7 @@
 import { app, BrowserWindow, BrowserWindowConstructorOptions, WebPreferences } from 'electron';
 import { CustomScheme } from './CustomScheme';
 import { CommonWindowEvent } from './CommonWindowEvent.ts';
+// import Updater from './Updater';
 
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true'; // 关闭安全警告
 let mainWindow: BrowserWindow;
@@ -30,6 +31,7 @@ app.whenReady().then(() => {
         // 认为是生产环境
         CustomScheme.registerScheme();
         mainWindow.loadURL('app://index.html');
+        // Updater.check();
     }
     CommonWindowEvent.listen();
 });
