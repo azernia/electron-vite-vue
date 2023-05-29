@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+// import { ref } from 'vue';
 import { ModelChat } from '../../../model/ModelChat';
 import { useChatStore } from '../../../store/useChatStore';
 import { useMessageStore } from '../../../store/useMessageStore';
@@ -12,6 +12,7 @@ const messageStore = useMessageStore();
 let curId = '';
 // 订阅 store 内数据变化
 chatStore.$subscribe((mutation, state) => {
+    console.log(mutation);
     const item = state.data.find((item) => item.isSelected) as ModelChat;
     const id = item?.id as string;
     if (id !== curId) {

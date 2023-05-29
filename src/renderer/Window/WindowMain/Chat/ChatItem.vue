@@ -9,7 +9,7 @@
         <div class="timeName">{{ data.sendTime }}</div>
       </div>
       <div class="row">
-        <div class="lastMsg">{{ data.lastMsg }}</div>
+        <div class="lastMsg">{{ data.lastMessage }}</div>
         <div class="subscribe"></div>
       </div>
     </div>
