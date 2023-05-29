@@ -1,15 +1,23 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
+import { useChatStore } from '../../../store/useChatStore';
 import ChatSearch from './ChatSearch.vue';
+import ChatItem from './ChatItem.vue';
+
+const store = useChatStore();
 
 onMounted(() => {
+    // 选中第七个会话
+    store.selectItem(store.data[6]);
 });
 </script>
 <template>
-    <div class="ChatList">
-        <ChatSearch/>
-        <div class="ListBox"></div>
+  <div class="ChatList">
+    <ChatSearch/>
+    <div class="ListBox">
+      <ChatItem :data="item" v-for="item in store.data" :key="item.id"/>
     </div>
+  </div>
 </template>
 <style scoped lang="scss">
 .ChatList {
